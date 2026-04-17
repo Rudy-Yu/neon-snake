@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Snake</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="hud">
+            <div class="score-box">SKOR: <span id="current-score">0</span></div>
+            <div class="score-box">TERTINGGI: <span id="high-score">0</span></div>
+        </div>
+
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Menu Utama -->
+        <div id="menu-overlay" class="overlay">
+            <h1>NEON SNAKE</h1>
+            <p>Gunakan Panah/WASD atau Tombol Layar</p>
+            <button id="start-btn" class="glow-button">MULAI</button>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div id="game-over-overlay" class="overlay hidden">
+            <h2 class="neon-text-red">GAME OVER</h2>
+            <p>Skor Akhir: <span id="final-score">0</span></p>
+            <button id="restart-btn" class="glow-button">COBA LAGI</button>
+        </div>
+
+        <!-- Kontrol Sentuh (Mobile) -->
+        <div id="touch-controls">
+            <div class="row">
+                <button id="up-btn" class="ctrl-btn">▲</button>
+            </div>
+            <div class="row">
+                <button id="left-btn" class="ctrl-btn">◀</button>
+                <button id="down-btn" class="ctrl-btn">▼</button>
+                <button id="right-btn" class="ctrl-btn">▶</button>
+            </div>
+        </div>
+        
+        <button id="pause-btn" class="icon-btn">II</button>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
