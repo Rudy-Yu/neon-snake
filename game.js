@@ -59,11 +59,39 @@ let lastTick = 0;
 // Initialization
 highScoreEl.textContent = highScore;
 resizeCanvas();
+window.addEventListener('resize', debounce(() => {
+    resizeCanvas();
+    if (gameState === 'PLAYING') spawnFood(); // Reposition food for safety
+}, 250));
 
 function resizeCanvas() {
-    const size = Math.min(window.innerWidth * 0.9, 400);
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const margin = 40;
+    let availableWidth, availableHeight;
+
+    if (isLandscape) {
+        availableWidth = window.innerWidth * 0.6; // 60% of width for canvas
+        availableHeight = window.innerHeight * 0.9;
+    } else {
+        availableWidth = window.innerWidth * 0.95;
+        availableHeight = window.innerHeight * 0.6; // 60% of height for canvas
+    }
+
+    const size = Math.min(availableWidth, availableHeight, 600);
+    const prevSize = canvas.width;
     canvas.width = Math.floor(size / GRID_SIZE) * GRID_SIZE;
     canvas.height = canvas.width;
+
+    // Redraw if game is paused/menu
+    if (gameState !== 'PLAYING') draw();
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(func, wait);
+    };
 }
 
 // Particle System

@@ -27,24 +27,52 @@ body {
 
 #game-container {
     position: relative;
-    width: 400px;
-    height: 600px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* Mode Landscape */
+@media (orientation: landscape) {
+    #game-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    
+    #hud {
+        flex-direction: column;
+        width: auto;
+        height: 100%;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #touch-controls {
+        margin-top: 0;
+    }
 }
 
 #hud {
     width: 100%;
+    max-width: 500px;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    font-size: 14px;
+    padding: 5px 15px;
+    font-size: clamp(12px, 2vw, 16px);
+    z-index: 5;
 }
 
 .score-box {
     color: var(--neon-cyan);
     text-shadow: 0 0 5px var(--neon-cyan);
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    border-radius: 4px;
 }
 
 #game-canvas {
@@ -52,22 +80,34 @@ body {
     border: 2px solid var(--neon-cyan);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     border-radius: 8px;
+    max-width: 95vw;
+    max-height: 70vh; /* Sisakan ruang untuk UI */
+}
+
+@media (orientation: landscape) {
+    #game-canvas {
+        max-height: 90vh;
+        max-width: 70vw;
+    }
 }
 
 .overlay {
     position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
     background: var(--bg-panel);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    border-radius: 8px;
+    z-index: 20;
+    border-radius: 12px;
     text-align: center;
+    border: 1px solid var(--neon-magenta);
 }
 
 .hidden {
